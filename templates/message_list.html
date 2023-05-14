@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>留言板</title>
+    <style>
+        /* CSS樣式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>留言板</h1>
+    {% if request.user.is_authenticated %}
+    <h1>登入者:{{request.user}}</h1>
+    {% endif %}
+    <!-- 留言板表格 -->
+    <table>
+        <tr>
+            <th>使用者名稱</th>
+            <th>留言文字</th>
+            <th>修改時間</th>
+            <!-- <th></th> -->
+        </tr>
+        {% for message in messages %}
+        <tr>
+            <td>{{ message.author }}</td>
+            <td>{{ message.content }}</td>
+            <th>{{ message.created_at }}</th>
+            <!-- {% if message.author == user.username %}
+            <td class="center">
+                <button onclick="editMessage()">修改</button>
+                <button onclick="deleteMessage()">收回</button>
+            </td>
+            {% endif %} -->
+        </tr>
+        {% endfor %}
+        <!-- 其他留言行 -->
+    </table>
+
+    {% if user.is_authenticated %}
+    <div>
+        <form action="/subit/" method="post">
+            {% csrf_token %}
+            <p></p>
+            <textarea name="content" rows="5" cols="230" placeholder="留言‧‧‧"></textarea>
+            <button style="float:right;"  type="submit">提交</button>
+        </form>
+
+    </div>
+    {% else %}
+        <p>請先登入或註冊才可留言：<a href="https://handsproject.eu.org/register/">註冊</a> / <a href="https://handsproject.eu.org/login/">登入</a></p>
+    {% endif %}
+</body>
+</html>

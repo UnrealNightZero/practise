@@ -20,5 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('', include('member.urls')),
-    path('', include('process_Video.urls'))
+    path('', include('process_Video.urls')),
+    path('', include('message.urls')),
+    path('', include('shop.urls'))
 ]

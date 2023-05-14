@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'member',
-    'process_Video'
+    'process_Video',
+    'message',
+    'shop'
 ]
 
 MIDDLEWARE = [
